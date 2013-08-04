@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Review Form</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<script type="text/javascript" language="JavaScript">
+
+
+
+
+// This function validates emails. First it checks that the there is a combination of valid caracters (username) /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\")) 
+// Then there must be a @ symbol somewhere in the middle.
+// Next it checks that there the input contains a combination of characters (host)
+// Then it checks that there is a . following the host specificitaion 
+// Finally there must be a extension in the specification of the host with at least two letter (e.g. com, au, org, etc)
+function isEmailValid(textField) 
+{ 
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;    
+	var resultTest = re.test(textField.value);
+	if (!resultTest)  // this is the same if we ask "if (resultTest == true)", which means we are asking in the content of the variable result test contains the boolean value "true"
+	{
+			textField.style.backgroundColor = "Red";  // If an error is detected, then it changes the background color to Red			
+            return false;	
+	}
+	else
+	{
+			textField.style.backgroundColor = "White";  // If an error is detected, then it changes the background color to Red			
+            return true;	
+	}
+}
+
+// This is a function to test that the state field is exactly two letters
+function isStateValid(textField) 
+{
+    if ((textField.value.length != 2) ||
+                  /[^a-zA-Z]/.test(textField.value))
+	{
+		textField.style.backgroundColor = "Red";
+		return false;
+	}
+	else
+	{
+		textField.style.backgroundColor = "White";
+		return true;
+	}
+}
+//This function check if in a list of browsers at least two of them is selected
+function browsertype(items,labelID) 
+{
+	for (i=1;i<items.length;i++) 
+	{
+		if (items[i].checked) 
+		{
+			
+			document.getElementById(labelID).style.backgroundColor = "White";
+			return true;
+		}
+	}
+
+	document.getElementById(labelID).style.backgroundColor = "Red";
+	return false;
+}
+//This function check if in a list of library size of items at least one is selected
+function librarysize(items,labelID) 
+{
+	for (i=0;i<items.length;i++) 
+	{
+		if (items[i].checked) 
+		{
+			
+			document.getElementById(labelID).style.backgroundColor = "White";
+			return true;
+		}
+	}
+
+	document.getElementById(labelID).style.backgroundColor = "Red";
+	return false;
+}
+//It checks if a given field contains characters or not. If contains characters, then it returns an empty string, otherwise it returns false.
+function isFieldValid(textField) {
+		
+    if (textField.value == "") {
+			textField.style.backgroundColor = "Red";  // If an error is detected, then it changes the background color to Red			
+            return false;
+    }
+    else {
+			textField.style.backgroundColor = "White";  //If there is not error with the field, it sets the background with the color White (in case it was changed to Red at some point)
+            return true;
+    } 
+}
+// This is a function to test that the state field is exactly two letters
+function isZipcodeValid(textField) {
+    if ((textField.value.length != 5) ||
+                  /[^0-9]/.test(textField.value))
+	{
+		textField.style.backgroundColor = "Red";
+		return false;	
+	}
+	else
+	{
+		textField.style.backgroundColor = "White";
+		return true;	
+	}
+}
+
+function isSelectionValid(selectField)
+{
+	if (selectField.selectedIndex == 0)
+	{
+			selectField.style.backgroundColor = "Red";  // If an error is detected, then it changes the background color to Red			
+            return false;	
+	}
+	else
+	{
+			selectField.style.backgroundColor = "White";  //If there is not error with the field, it sets the background with the color White (in case it was changed to Red at some point)
+            return true;	
+	}
+	
+}
+
+/* this is a validate function that calls other functions accumulates the return values using the logical operator && (AND). If all fields are valid, then the final result contained in the variable
+   fail will be true. Otherwise, it will be false.
+  and tests if this is empty or not */
+
+function isFormValid(form) {
+    var result = isFieldValid(form.firstName);
+    result = isFieldValid(form.lastName) && result;
+	result = isEmailValid(form.email) && result;
+    result = isFieldValid(form.city) && result;
+    result = isStateValid(form.state) && result;
+    result = isZipcodeValid(form.zipcode) && result;
+	result = browsertype(form["os[]"],"osLabel") && result;
+    result = isSelectionValid(form.pastUse) && result;
+	result = librarysize(form.rating,"rateToolLabel") && result;
+    
+    return result;
+    
+}
+
+
+
+
+</script>
+</head>
+<body>
+<div id="pageContent">
+<div id="header">LibX Review for Librarians</div>
+<div id="navi">
+				<a href="pg1.html">Introduction to LibX</a> | <a href="pg2.html">You are here</a>
+			</div>
+			<form action="mailto:eleido.rodriguez@gmail.com" method="POST" onsubmit="return isFormValid(this)">
+	<fieldset id="personal">
+		<legend align="left">Personal Information</legend>
+		<label>First Name (*): </label><input type="text" name="firstName" /><br/>
+		<label>Last Name (*): </label><input type="text" name="lastName" /><br/>
+		<label>Email (*): </label><input type="text" name="email" /><br/>
+		<label>City (*): </label><input type="text" name="city" /><br/>
+		<label>State (*): </label><input type="text" name="state" size="2" maxlength="2" /><br /> 
+		<label>Zipcode (*):</label><input type="text" name="zipcode" size="5" maxlength="5" /> 
+	</fieldset>
+	<fieldset id="personal">
+		<legend align="left">Tool Information</legend>
+		<label id="osLabel">LibX Extension (*):<font color="#CECEF6"><i>Select at least 2<i/></font></label><br/>
+										 <input type="checkbox" name="os[]" value="chrome" /><label>Chrome</label><br/>
+										 <input type="checkbox" name="os[]" value="firefox" /><label>Firefox</label><br/>
+										 <input type="checkbox" name="os[]" value="safari" /><label>Safari</label>
+		<br/>
+		<label id="usedToolLabel">Have you tried LibX? (*): </label><select name="pastUse">
+											<option value="-1"></option>
+											<option value="1">Yes</option>
+											<option value="0">No</option>
+										</select>
+		<br/>
+		<label id="rateToolLabel"> Library Type(*):<font color="#CECEF6"><i>Select 1</i></font></label><br/>
+									 <input type="radio" name="rating" value="1" /><label>Small Municipal</label><br/>
+									 <input type="radio" name="rating" value="2" /><label>Large Urban</label><br/>
+									 <input type="radio" name="rating" value="3" /><label>University</label><br/>	
+									 <input type="radio" name="rating" value="4" /><label>College</label><br/>		
+									 <input type="radio" name="rating" value="5" /><label>Research</label>	</br>
+		<textarea name="comments" rows="3" cols="40">Please share any comments you have here</textarea>
+	</fieldset>
+	<input type="submit" value="Submit Info"  />
+	<input type="reset" value="Reset Form" />
+
+</form>
+			</div>
+			</body>
+</html>
