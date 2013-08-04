@@ -1,0 +1,92 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0094)http://comminfo.rutgers.edu/~aspoerri/Teaching/InfoTech/Lectures/Lec8/Steps/imagerollover.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>JavaScript Image Rollover</title>
+<link rel="stylesheet" href="ex4.css" type="text/css" />
+<head>
+<script type="text/javascript"language="JavaScript">
+  nyplib = new Image (143,83)
+	nyplib.src = "libx.jpg"
+	nypliboutside = new Image (143,83)
+	nypliboutside.src = "libx2.jpg"
+	
+	nyplib2 = new Image (143,83)
+	nyplib2.src = "LIBX3.png"
+	nypliboutside3 = new Image (143,83)
+	nypliboutside3.src = "libx4.jpg"
+	//hello
+</script>
+
+</head>
+<body>
+<div id="pageContent">
+<div id="header">Introduction to LibX</div>
+<div id="navi">
+				<a href="pg1.html">You are here</a> | <a href="pg2.html">LibX Review for Librarians</a>
+			</div>
+<!--<p>Before Paragraph</p>-->
+
+</br>
+<img src="libx.jpg" name="lib"
+onmouseover="document.lib.src = nypliboutside.src"
+onmouseout="document.lib.src = nyplib.src"
+/><p>LibX is an open source tool that can be used for your library.  There are editions for both small libraries as well as larger libraries.  
+It is especially poplular in university libraries.  Some of the universities that use LibX are as follows:
+ 	University of Connecticut; Harvard University; New York University; Massachusetts Institute of Technology; Emory College; 
+	Virginia Institute of Technology;
+	Georgia Institute of Technology; University of Michigan; Duke University; Dartmouth College; Cornell Labs; Wyoming Libraries;
+	Boston College; Brown University; 
+	Columbia University; (Columbia University also uses the College Edition); University of Leicester (Great Britain); 
+	University of Texas; University of Manitoba (Canada);
+	Kansas State; Wester Libraries, the University of Western Ontario (Canada); and the University of Maine.  This is a partial list of satisfied LibX for 
+	library users.
+ </p>
+ </br>
+<p> LibX can be used with both Safari and 
+ 	Chrome edition builder.
+  </p>
+ </br>
+ <p>
+  The LibX Project was copyrighted in 2012 and is a joint project of the University Libraries and the Department of Computer Science at the Virginia Institute
+  of Technology.  Funding is provided by the Institute of Museum and Library Services.
+  
+  </p>
+  <img src="LIBX3.png" name="lib2"
+onmouseover="document.lib2.src = nypliboutside3.src"
+onmouseout="document.lib2.src = nyplib2.src"
+/>
+  </br>
+  <p>
+  LibX is an Open Source tool. According the the Free Software Foundation, ..."the term 'open source' software is used
+  by some people to mean more or less the same category as free software. It is not exactly the same class of software: they 
+  accept some licenses that we consider too restrictive, and there are free software licenses they have not accepted. 
+  However, the differences in extension of the category are small: nearly all free software is open source, and nearly all open 
+  source software is free".
+
+  <a href="http://www.gnu.org/philosophy/categories.html">Free Software Foundation</a>
+  
+  </p>
+  </br>
+   <p>According the the staff at the Highline Community College Library, "it's a nice way of quickly searching our catalog without having to open a new window
+  and go to the library homepage.  It also embeds our college logo as a cue into Amazon, Google, NY Times Book Review, ans some more sites so that you can 
+  just click on our logo and instantly search the catalog.  Pretty cool." <a href="http://flightline.highline.edu/reference/"> Highline Community College Library</a></p>
+  </br>
+  <p>
+  The link to LibX is <a href="http://www.libx.org/">HERE</a>
+  </p>
+
+<noscript>Your browser isn't running scripts.  This is a picture of the New York City Public Library, main branch reading room, 
+and a picture of the NYCPL outside.</noscript>
+<!--<p>After Paragraph</p>-->
+
+<div id="footer"><script type="text/javascript">
+document.write("<h2>Using JavaScript</h2>");
+document.write("Hello World. Today is " + Date());
+document.write("<br/>");
+document.write(navigator.userAgent);
+</script>
+</div>
+</div>
+</body></html>
